@@ -1,0 +1,57 @@
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --transition-default: 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#board {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 4rem 0;
+
+    background-color:seagreen;
+}
+
+#card {
+    position: relative;
+    width: 250px;
+    height: 350px;
+
+    padding: 0.5rem;
+
+    background-color: white;
+    border-radius: 1rem;
+
+    box-shadow: black 0.5rem 0.5rem 1.5rem -1rem;
+    user-select: none;
+
+    transition: var(--transition-default), box-shadow var(--transition-default);
+}
+
+#card:hover {
+    box-shadow: black 0.5rem 0.5rem 1.5rem -0.5rem;
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+#card:active {
+    box-shadow: black 0.5rem 0.5rem 1.5rem -1rem;
+    transform: scale(1);
+}
