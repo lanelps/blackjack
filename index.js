@@ -1,6 +1,5 @@
-const createCard = (index, suit, symbol, value) => {
+const createCard = (suit, symbol, value) => {
   return {
-    id: index,
     suit,
     pipSymbol: symbol,
     pipValue: value,
@@ -26,8 +25,8 @@ const createFlush = ({ name, symbol }) => {
     `K`,
   ];
 
-  pipValues.forEach((pip, index) => {
-    flush.push(createCard(index, name, symbol, pip));
+  pipValues.forEach((pip) => {
+    flush.push(createCard(name, symbol, pip));
   });
 
   return flush;
@@ -60,7 +59,7 @@ const shuffleDeck = (deck) => {
 
 //
 
-const nextCard = (arr, currentIndex) => {
+const getNextCard = (arr, currentIndex) => {
   if (currentIndex > arr.length - 1) {
     return { card: arr[0], index: 0 };
   } else {
@@ -80,12 +79,12 @@ const init = () => {
   symbol.innerHTML = deck[0].pipSymbol;
 
   card.addEventListener(`click`, () => {
-    const next = nextCard(deck, currentIndex);
+    const nextCard = getNextCard(deck, currentIndex);
 
-    currentIndex = next.index;
+    currentIndex = nextCard.index;
 
-    pipValue.innerHTML = next.card.pipValue;
-    symbol.innerHTML = next.card.pipSymbol;
+    pipValue.innerHTML = nextCard.card.pipValue;
+    symbol.innerHTML = nextCard.card.pipSymbol;
   });
 };
 
