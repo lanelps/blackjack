@@ -7,8 +7,6 @@ const createCard = (suit, symbol, value) => {
 };
 
 const createFlush = ({ name, symbol }) => {
-  const flush = [];
-
   const pipValues = [
     `A`,
     `2`,
@@ -25,16 +23,10 @@ const createFlush = ({ name, symbol }) => {
     `K`,
   ];
 
-  pipValues.forEach((pip) => {
-    flush.push(createCard(name, symbol, pip));
-  });
-
-  return flush;
+  return pipValues.map((pip) => createCard(name, symbol, pip));
 };
 
 const createDeck = () => {
-  const deck = [];
-
   const suits = [
     { name: `spades`, symbol: `♠️` },
     { name: `clubs`, symbol: `♣️` },
@@ -42,11 +34,7 @@ const createDeck = () => {
     { name: `hearts`, symbol: `♥️` },
   ];
 
-  suits.forEach((suite) => {
-    deck.push(createFlush(suite));
-  });
-
-  return deck.flat();
+  return suits.flatMap(createFlush);
 };
 
 const shuffle = (arr) => {
@@ -63,7 +51,7 @@ const getNextCard = (arr, currentIndex) => {
   if (currentIndex > arr.length - 1) {
     return { card: arr[0], index: 0 };
   } else {
-    return { card: arr[currentIndex++], index: currentIndex++ };
+    return { card: arr[currentIndex + 1], index: currentIndex + 1 };
   }
 };
 
